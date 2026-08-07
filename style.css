@@ -1,304 +1,209 @@
-/* Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+// ===========================
+// MOBILE MENU
+// ===========================
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-    scroll-behavior:smooth;
+const menuIcon = document.querySelector("#menu-icon");
+const navbar = document.querySelector(".navbar");
+
+menuIcon.onclick = () => {
+    menuIcon.classList.toggle("bx-x");
+    navbar.classList.toggle("active");
+};
+
+// Close menu when clicking a link
+document.querySelectorAll(".navbar a").forEach(link => {
+    link.addEventListener("click", () => {
+        menuIcon.classList.remove("bx-x");
+        navbar.classList.remove("active");
+    });
+});
+
+// ===========================
+// DARK MODE
+// ===========================
+
+const darkModeBtn = document.getElementById("darkMode");
+
+darkModeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("light");
+
+    const icon = darkModeBtn.querySelector("i");
+
+    if (document.body.classList.contains("light")) {
+        icon.classList.remove("bx-moon");
+        icon.classList.add("bx-sun");
+    } else {
+        icon.classList.remove("bx-sun");
+        icon.classList.add("bx-moon");
+    }
+});
+
+// ===========================
+// TYPING EFFECT
+// ===========================
+
+const typingElement = document.querySelector(".typing");
+
+const words = [
+    "IT Student",
+    "Web Developer",
+    "Programmer",
+    "UI Designer",
+    "Future Software Engineer"
+];
+
+let wordIndex = 0;
+let charIndex = 0;
+let deleting = false;
+
+function typeEffect() {
+
+    const currentWord = words[wordIndex];
+
+    if (!deleting) {
+        typingElement.textContent = currentWord.substring(0, charIndex++);
+    } else {
+        typingElement.textContent = currentWord.substring(0, charIndex--);
+    }
+
+    let speed = deleting ? 60 : 120;
+
+    if (!deleting && charIndex > currentWord.length) {
+        deleting = true;
+        speed = 1200;
+    }
+
+    if (deleting && charIndex < 0) {
+        deleting = false;
+        wordIndex++;
+
+        if (wordIndex >= words.length) {
+            wordIndex = 0;
+        }
+    }
+
+    setTimeout(typeEffect, speed);
 }
 
-body{
-    background:#f4f8ff;
-    color:#333;
-    line-height:1.6;
-}
+typeEffect();
 
-/* Navigation */
+// ===========================
+// ACTIVE NAVIGATION
+// ===========================
 
-header{
-    background:linear-gradient(135deg,#2563eb,#1e40af);
-    color:#fff;
-    min-height:100vh;
-}
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".navbar a");
 
-nav{
-    width:90%;
-    max-width:1200px;
-    margin:auto;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:25px 0;
-}
+window.addEventListener("scroll", () => {
 
-.logo{
-    font-size:32px;
-    font-weight:700;
-}
+    let current = "";
 
-.logo span{
-    color:#ffd700;
-}
+    sections.forEach(section => {
 
-nav ul{
-    display:flex;
-    list-style:none;
-}
+        const sectionTop = section.offsetTop - 120;
+        const sectionHeight = section.clientHeight;
 
-nav ul li{
-    margin-left:30px;
-}
+        if (scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+        }
 
-nav ul li a{
-    color:#fff;
-    text-decoration:none;
-    font-weight:500;
-    transition:.3s;
-}
+    });
 
-nav ul li a:hover{
-    color:#ffd700;
-}
+    navLinks.forEach(link => {
 
-/* Hero */
+        link.classList.remove("active");
 
-.hero{
-    width:90%;
-    max-width:1200px;
-    margin:auto;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    min-height:85vh;
-    gap:60px;
-}
+        if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active");
+        }
 
-.hero-image img{
-    width:340px;
-    height:340px;
-    border-radius:50%;
-    object-fit:cover;
-    border:8px solid rgba(255,255,255,.4);
-    box-shadow:0 15px 35px rgba(0,0,0,.3);
-}
+    });
 
-.hero-text h3{
-    font-size:22px;
-}
+});
 
-.hero-text h1{
-    font-size:55px;
-    margin:10px 0;
-}
+// ===========================
+// SCROLL REVEAL
+// ===========================
 
-.hero-text h2{
-    font-size:28px;
-    color:#dbeafe;
-}
+const hiddenElements = document.querySelectorAll(
+    ".education-box, .skill, .about-content, .about-img"
+);
 
-.hero-text p{
-    margin:20px 0;
-    font-size:18px;
-}
+hiddenElements.forEach(el => {
+    el.classList.add("hidden");
+});
 
-/* Buttons */
+const observer = new IntersectionObserver(entries => {
 
-.buttons{
-    display:flex;
-    gap:15px;
-}
+    entries.forEach(entry => {
 
-.btn,
-.btn2{
-    padding:13px 28px;
-    border-radius:50px;
-    text-decoration:none;
-    font-weight:600;
-    transition:.3s;
-}
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+        }
 
-.btn{
-    background:#fff;
-    color:#2563eb;
-}
+    });
 
-.btn:hover{
-    transform:translateY(-4px);
-}
+}, {
+    threshold: 0.2
+});
 
-.btn2{
-    border:2px solid #fff;
-    color:#fff;
-}
+hiddenElements.forEach(el => observer.observe(el));
 
-.btn2:hover{
-    background:#fff;
-    color:#2563eb;
-}
+// ===========================
+// HEADER SHADOW
+// ===========================
 
-/* Sections */
+const header = document.querySelector(".header");
 
-section{
-    padding:90px 10%;
-}
+window.addEventListener("scroll", () => {
 
-.title{
-    text-align:center;
-    font-size:38px;
-    color:#2563eb;
-    margin-bottom:50px;
-}
+    if (window.scrollY > 80) {
 
-/* About */
+        header.style.boxShadow = "0 10px 30px rgba(0,0,0,.25)";
 
-.about-container{
-    display:grid;
-    grid-template-columns:2fr 1fr;
-    gap:30px;
-}
+    } else {
 
-.about-card,
-.info-card{
-    background:#fff;
-    padding:35px;
-    border-radius:20px;
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-    transition:.3s;
-}
+        header.style.boxShadow = "none";
 
-.about-card:hover,
-.info-card:hover{
-    transform:translateY(-8px);
-}
+    }
 
-/* Skills */
+});
 
-.skills-container{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
-    gap:20px;
-}
+// ===========================
+// SMOOTH SCROLL
+// ===========================
 
-.skill{
-    background:linear-gradient(135deg,#2563eb,#1d4ed8);
-    color:white;
-    padding:20px;
-    text-align:center;
-    border-radius:15px;
-    font-weight:600;
-    transition:.3s;
-}
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
-.skill:hover{
-    transform:scale(1.05);
-}
+    anchor.addEventListener("click", function (e) {
 
-/* Hobbies */
+        e.preventDefault();
 
-.hobby-container{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:25px;
-}
+        const target = document.querySelector(this.getAttribute("href"));
 
-.hobby-card{
-    background:#fff;
-    padding:40px;
-    text-align:center;
-    border-radius:20px;
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-    transition:.3s;
-}
+        if (target) {
 
-.hobby-card:hover{
-    transform:translateY(-10px);
-}
+            target.scrollIntoView({
 
-.hobby-card i{
-    font-size:55px;
-    color:#2563eb;
-    margin-bottom:15px;
-}
+                behavior: "smooth"
 
-/* Contact */
+            });
 
-.contact-container{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
-}
+        }
 
-.contact-card{
-    background:white;
-    padding:35px;
-    border-radius:20px;
-    text-align:center;
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-    transition:.3s;
-}
+    });
 
-.contact-card:hover{
-    transform:translateY(-10px);
-}
+});
 
-.contact-card i{
-    font-size:45px;
-    color:#2563eb;
-    margin-bottom:15px;
-}
+// ===========================
+// CURRENT YEAR
+// ===========================
 
-/* Footer */
+const footerText = document.querySelector(".footer-text p");
 
-footer{
-    background:#0f172a;
-    color:white;
-    text-align:center;
-    padding:25px;
-}
+if (footerText) {
 
-/* Responsive */
-
-@media(max-width:900px){
-
-.hero{
-    flex-direction:column;
-    text-align:center;
-    padding-top:40px;
-}
-
-.hero-image img{
-    width:260px;
-    height:260px;
-}
-
-.hero-text h1{
-    font-size:40px;
-}
-
-.about-container{
-    grid-template-columns:1fr;
-}
-
-nav{
-    flex-direction:column;
-}
-
-nav ul{
-    margin-top:20px;
-    flex-wrap:wrap;
-    justify-content:center;
-}
-
-nav ul li{
-    margin:10px;
-}
-
-.buttons{
-    justify-content:center;
-}
+    footerText.innerHTML =
+        `© ${new Date().getFullYear()} Justin Quiambao | All Rights Reserved.`;
 
 }
-
-
