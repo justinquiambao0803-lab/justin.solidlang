@@ -407,3 +407,44 @@ HOBBIES
     font-size:15px;
     line-height:1.7;
 }
+
+/* ===========================
+CONTACT
+=========================== */
+
+.contact form{
+    max-width:700px;
+    margin:1rem auto;
+    text-align:center;
+}
+
+.contact form .input-box{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+}
+
+.contact form .input-box input,
+.contact form textarea{
+    width:100%;
+    padding:1.5rem;
+    font-size:1rem;
+    color:var(--text-color);
+    background:var(--second-bg);
+    border-radius:10px;
+    margin:.7rem 0;
+}
+
+.contact form .input-box input{
+    width:49%;
+}
+
+.contact form textarea{
+    resize:none;
+    height:220px;
+}
+
+.contact form .btn{
+    margin-top:20px;
+    cursor:pointer;
+}
