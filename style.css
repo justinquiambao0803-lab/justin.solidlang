@@ -108,11 +108,9 @@ section{
 }
 
 .logo{
-
     font-size:28px;
-    color:#fff;
+    color:var(--text-color);
     font-weight:700;
-
 }
 
 .logo span{
@@ -122,12 +120,10 @@ section{
 }
 
 .navbar a{
-
-    color:#fff;
+    color:var(--text-color);
     margin-left:25px;
     font-size:16px;
     transition:.3s;
-
 }
 
 .navbar a:hover,
@@ -146,9 +142,8 @@ section{
 }
 
 #darkMode{
-
     background:none;
-    color:#fff;
+    color:var(--text-color);
     font-size:24px;
     cursor:pointer;
 }
@@ -518,3 +513,27 @@ CONTACT MESSAGE
     font-weight:600;
     text-align:center;
 }
+
+// ===========================
+// DARK / LIGHT MODE
+// ===========================
+
+const darkMode = document.getElementById("darkMode");
+const body = document.body;
+
+darkMode.addEventListener("click", () => {
+
+    body.classList.toggle("light");
+
+    // Palitan ang icon
+    const icon = darkMode.querySelector("i");
+
+    if (body.classList.contains("light")) {
+        icon.classList.remove("bx-moon");
+        icon.classList.add("bx-sun");
+    } else {
+        icon.classList.remove("bx-sun");
+        icon.classList.add("bx-moon");
+    }
+
+});
