@@ -189,21 +189,23 @@
 
     <h2 class="heading">Contact <span>Me</span></h2>
 
-    <form action="#">
+    <form id="contactForm">
 
         <div class="input-box">
-            <input type="text" placeholder="Full Name">
-            <input type="email" placeholder="Email Address">
+            <input type="text" id="fullName" placeholder="Full Name" required>
+            <input type="email" id="email" placeholder="Email Address" required>
         </div>
 
         <div class="input-box">
-            <input type="number" placeholder="Mobile Number">
-            <input type="text" placeholder="Email Subject">
+            <input type="tel" id="mobile" placeholder="Mobile Number" required>
+            <input type="text" id="subject" placeholder="Email Subject" required>
         </div>
 
-        <textarea cols="30" rows="10" placeholder="Your Message"></textarea>
+        <textarea id="message" placeholder="Your Message" required></textarea>
 
         <input type="submit" value="Send Message" class="btn">
+
+        <p id="formMessage"></p>
 
     </form>
 
