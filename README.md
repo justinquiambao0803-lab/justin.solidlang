@@ -45,4 +45,4 @@ GitHub Repository :
 https://github.com/justinquiambao0803-lab/justin.solidlang
 
 ## Screenshot
-![Website Screenshot](IMG/screenshot.png) 
+![Website Screenshot](IMG/screenshot.jpg) 
