@@ -592,14 +592,15 @@ section{
 =========================== */
 
 .footer {
+    width: 100%;
     background: var(--second-bg);
     padding: 40px 10% 20px;
     text-align: center;
-    border-top: 1px solid rgba(56, 189, 248, 0.2);
 }
 
 .footer-content h3 {
-    font-size: 28px;
+    font-size: 30px;
+    color: var(--text-color);
     margin-bottom: 10px;
 }
 
@@ -608,10 +609,11 @@ section{
 }
 
 .footer-content p {
-    font-size: 15px;
+    color: var(--text-color);
     margin-bottom: 20px;
-    opacity: 0.8;
 }
+
+/* SOCIAL MEDIA */
 
 .footer-social {
     display: flex;
@@ -621,8 +623,9 @@ section{
 }
 
 .footer-social a {
-    width: 42px;
-    height: 42px;
+    width: 45px;
+    height: 45px;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -633,8 +636,8 @@ section{
     border: 2px solid var(--main-color);
     border-radius: 50%;
 
-    font-size: 20px;
-    transition: 0.3s ease;
+    font-size: 22px;
+    transition: 0.3s;
 }
 
 .footer-social a:hover {
@@ -644,18 +647,22 @@ section{
     box-shadow: var(--shadow);
 }
 
+/* FOOTER BOTTOM */
+
 .footer-bottom {
+    border-top: 1px solid var(--main-color);
+
+    padding-top: 20px;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-bottom p {
-    font-size: 14px;
     margin: 0;
+    font-size: 14px;
+    color: var(--text-color);
 }
 
 .footer-bottom a {
@@ -670,9 +677,9 @@ section{
     color: #fff;
 
     border-radius: 8px;
-    font-size: 22px;
 
-    transition: 0.3s ease;
+    font-size: 22px;
+    transition: 0.3s;
 }
 
 .footer-bottom a:hover {
@@ -680,15 +687,9 @@ section{
     box-shadow: var(--shadow);
 }
 
-/* ===========================
-   FOOTER MOBILE
-=========================== */
+/* MOBILE */
 
 @media (max-width: 768px) {
-
-    .footer {
-        padding: 35px 5% 20px;
-    }
 
     .footer-bottom {
         flex-direction: column;
