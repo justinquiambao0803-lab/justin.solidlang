@@ -427,10 +427,6 @@ section{
    HOBBIES
 =========================== */
 
-.hobbies {
-    background: var(--bg-color);
-}
-
 .hobbies-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -444,13 +440,12 @@ section{
     padding: 35px 25px;
     border-radius: 20px;
     text-align: center;
-    border: 2px solid transparent;
+    border: 2px solid var(--main-color);
     transition: 0.3s ease;
 }
 
 .hobbies-box:hover {
     transform: translateY(-10px);
-    border-color: var(--main-color);
     box-shadow: var(--shadow);
 }
 
@@ -466,7 +461,6 @@ section{
 }
 
 .hobbies-box p {
-    font-size: 15px;
     line-height: 1.7;
 }
 
