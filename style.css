@@ -448,3 +448,13 @@ CONTACT
     margin-top:20px;
     cursor:pointer;
 }
+
+/* ===========================
+CONTACT MESSAGE
+=========================== */
+
+#formMessage {
+    margin-top:20px;
+    font-weight:600;
+    text-align:center;
+}
